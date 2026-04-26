@@ -9,7 +9,7 @@
           ┌────────────────▼────────────────┐
           │         AGENT PIPELINE          │
           │                                 │
-          │  1. JD Parser (Claude API)      │
+          │  1. JD Parser (Groq API)      │
           │     • Extracts skills, exp,     │
           │       location, budget, domain  │
           │                                 │
@@ -18,7 +18,7 @@
           │     • 5-dimension breakdown     │
           │     • Top-N selection           │
           │                                 │
-          │  3. Outreach Agent (Claude API) │
+          │  3. Outreach Agent (Groq API) │
           │     • Simulates conversation    │
           │     • Detects interest signals  │
           │     • Computes Interest Score   │
