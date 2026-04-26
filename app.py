@@ -106,22 +106,43 @@ st.markdown(
 )
 
 
+# ── Auto-load API key from secrets or env ────────────────────────────────────
+def load_api_key():
+    if os.environ.get("GROQ_API_KEY"):
+        return os.environ["GROQ_API_KEY"]
+    try:
+        key = st.secrets["GROQ_API_KEY"]
+        if key:
+            os.environ["GROQ_API_KEY"] = key
+            return key
+    except Exception:
+        pass
+    return None
+
+auto_key = load_api_key()
+
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("## 🎯 TalentScout AI")
     st.markdown("*AI-Powered Talent Scouting & Engagement Agent*")
     st.divider()
 
-    api_key = st.text_input(
-        "🔑 Groq API Key (FREE)",
-        type="password",
-        placeholder="gsk_...",
-        help="100% FREE — Get key at console.groq.com (no credit card needed)",
-    )
-
-    if api_key:
-        os.environ["GROQ_API_KEY"] = api_key
-        st.success("✅ API Key set")
+    if auto_key:
+        st.success("✅ AI Engine Ready")
+        api_key = auto_key
+    else:
+        manual_key = st.text_input(
+            "🔑 Groq API Key (FREE)",
+            type="password",
+            placeholder="gsk_...",
+            help="Get a FREE key at console.groq.com — no credit card needed",
+        )
+        if manual_key:
+            os.environ["GROQ_API_KEY"] = manual_key
+            api_key = manual_key
+            st.success("✅ API Key set")
+        else:
+            api_key = None
 
     st.divider()
     st.markdown("### ⚙️ Settings")
@@ -133,7 +154,7 @@ with st.sidebar:
     st.markdown(
         """
 1. **Paste** your Job Description  
-2. **Claude parses** requirements & skills  
+2. **AI parses** requirements & skills  
 3. **Candidates matched** with explainable scores  
 4. **AI simulates** outreach conversations  
 5. **Ranked shortlist** with Match + Interest scores  
@@ -264,7 +285,7 @@ with run_col:
     )
 
 if not api_key:
-    st.info("👈 Enter your FREE Groq API key in the sidebar. Get one FREE at [console.groq.com](https://console.groq.com) — no credit card needed!")
+    st.info("👈 Add your FREE Groq API key in the sidebar. Get one at [console.groq.com](https://console.groq.com) — no credit card, takes 1 minute!")
 
 if not jd_input.strip() and api_key:
     st.info("📄 Paste a job description above or click a sample JD to begin.")
