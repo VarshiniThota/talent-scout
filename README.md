@@ -17,10 +17,7 @@ TalentScout AI takes a **Job Description as input** and automatically:
 
 ---
 
-## 🖥️ Live Demo
 
-🔗 **[Try it live →](https://your-app.streamlit.app)**  
-📹 **[Demo Video →](https://your-video-link)**
 
 ---
 
@@ -45,44 +42,9 @@ talent-scout/
 
 ---
 
-## ⚡ Local Setup
 
-### Prerequisites
-- Python 3.9+
-- Anthropic API key ([get one here](https://console.anthropic.com))
 
-### Steps
 
-```bash
-# 1. Clone the repo
-git clone https://github.com/YOUR_USERNAME/talent-scout-ai.git
-cd talent-scout-ai
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Set your API key
-export ANTHROPIC_API_KEY="sk-ant-your-key-here"
-# OR add it in the app's sidebar at runtime
-
-# 4. Run the app
-streamlit run app.py
-```
-
-App opens at: `http://localhost:8501`
-
----
-
-## ☁️ Deploy to Streamlit Cloud
-
-1. Push this repo to GitHub (make sure `.streamlit/secrets.toml` is in `.gitignore`)
-2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Connect your GitHub repo → set `app.py` as main file
-4. In **Secrets**, add:
-   ```toml
-   ANTHROPIC_API_KEY = "sk-ant-your-key-here"
-   ```
-5. Click **Deploy** ✅
 
 ---
 
@@ -134,7 +96,7 @@ Preferred: AWS, Redis, Microservices
 | Layer | Tech |
 |-------|------|
 | Frontend | Streamlit |
-| AI Engine | Anthropic Claude (claude-sonnet-4) |
+| AI Engine | Groq(llama-3.3-70b-versatile ) |
 | Language | Python 3.9+ |
 | Deployment | Streamlit Cloud |
 | Data | Mock profiles (20 candidates) |
@@ -154,6 +116,4 @@ Submitted by: **Thota Varshini**
 
 ---
 
-## 📄 License
 
-MIT
